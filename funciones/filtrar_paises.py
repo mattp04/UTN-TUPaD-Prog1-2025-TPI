@@ -16,7 +16,6 @@ def filtrar_paises(diccionario, continente=None, min_poblacion=None, max_poblaci
         if max_superficie is not None and datos["Superficie"] > max_superficie:
             continue
         
-        resultado.append(nombre)
+        resultado.append((nombre, datos))
 
     return resultado
-

@@ -8,20 +8,80 @@ from funciones.mostrar_paises import mostrar_paises
 
 diccionario = leer_csv()
 
-# paises = list(diccionario.keys())
-# print(paises)  # ['Argentina', 'Brasil']
+while True:
+    mostrar_menu()
+    opcion = input("Seleccione una opción: ")
+    match opcion:
+        case "1":
+            dato = input("Ingrese país que desea buscar: ")
+            lista = buscar_pais(diccionario, dato)
+            mostrar_paises(lista, campos=["pais", "continente", "población", "superficie"])
+            print("\n")
+        case "2":
+            continente=None
+            min_poblacion=None
+            max_poblacion=None
+            min_superficie=None
+            max_superficie=None
+            print("Desea filtrar paises por: ")
+            print(" 1 - Continente")
+            print(" 2 - Rango de población")
+            print(" 3 - Rango de superficie")
+            seleccion = int(input("Ingrese opción: "))
 
-# mostrar_menu()
+            if seleccion == 1 or seleccion == 2 or seleccion == 3 :
+                if seleccion == 1:
+                    continente = input("Ingrese continente a filtrar: ")
+                elif seleccion == 2:
+                    min_poblacion = int(input("Ingrese min. población a filtrar: "))
+                    max_poblacion = int(input("Ingrese max. población a filtrar: "))
+                else:
+                    min_superficie = int(input("Ingrese min. superficie a filtrar: "))
+                    max_superficie = int(input("Ingrese max. superficie a filtrar: "))
+                    
+                lista = filtrar_paises(diccionario, continente, min_poblacion, max_poblacion, min_superficie, max_superficie)
+                mostrar_paises(lista, campos=["pais", "continente", "población", "superficie"])
+                print("\n")
+            else : 
+                print("Opción no válida. Intente nuevamente.")
 
-# lista = buscar_pais(diccionario, 'republi')
-# print(lista)
+        case "3":
+            criterio=None
+            tipo_orden=False
+            print("Desea ordenar paises por: ")
+            print(" 1 - Nombre")
+            print(" 2 - Población")
+            print(" 3 - Superficie")
+            seleccion = int(input("Ingrese opción: "))
 
-# for item in lista :
-#     print(diccionario[item])
+            if seleccion == 1 or seleccion == 2 or seleccion == 3 :
+                if seleccion == 1:
+                    criterio = "País"
+                elif seleccion == 2:
+                    criterio = "Población"
+                else:
+                    criterio = "Superficie"
+                print("Desea ordenar de manera: ")
+                print(" 1 - Ascendente")
+                print(" 2 - Descendente")
+                seleccion_tipo = int(input("Ingrese opción: "))
+                if seleccion_tipo == 1 or seleccion_tipo == 2:
+                    if seleccion_tipo == 2:
+                        tipo_orden = True
+                    lista = ordenar_paises(diccionario, criterio, tipo_orden)
+                    mostrar_paises(lista, campos=["pais", "continente", "población", "superficie"])
+                    print("\n")
+                else : 
+                    print("Opción no válida. Intente nuevamente.")
+            else : 
+                print("Opción no válida. Intente nuevamente.")
+        case "4":
+            # acá iría mostrar_estadisticas()
+            continue
 
-# lista= obtener_dato(diccionario, "América del Sur", diccionario.keys())
-# print(lista)
+        case "0":
+            print("Fin del programa...")
+            break
 
-lista= ordenar_paises(diccionario)
-# mostrar_paises(lista)
-mostrar_paises(lista, campos=["pais", "continente", "superficie"])
+        case _:
+            print("Opción no válida. Intente nuevamente.")

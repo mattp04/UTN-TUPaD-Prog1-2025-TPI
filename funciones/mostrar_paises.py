@@ -23,6 +23,7 @@ def mostrar_paises(lista, campos=None, ancho=40):
     # Filas
     for elemento in lista:
         # Puede venir como (nombre, datos) o solo nombre
+        # isinstance valida el tipo de un objeto
         if isinstance(elemento, tuple):
             nombre, datos = elemento
         else:
