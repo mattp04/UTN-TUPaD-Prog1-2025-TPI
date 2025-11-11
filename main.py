@@ -1,10 +1,10 @@
 from funciones.leer_csv import leer_csv
 from funciones.menu import mostrar_menu
 from funciones.buscar_pais import buscar_pais
-from funciones.obtener_dato import obtener_dato
 from funciones.filtrar_paises import filtrar_paises
 from funciones.ordenar_paises import ordenar_paises
 from funciones.mostrar_paises import mostrar_paises
+from funciones.mostrar_estadisticas import mostrar_estadisticas
 
 diccionario = leer_csv()
 
@@ -76,9 +76,7 @@ while True:
             else : 
                 print("Opción no válida. Intente nuevamente.")
         case "4":
-            # acá iría mostrar_estadisticas()
-            continue
-
+            mostrar_estadisticas(diccionario)
         case "0":
             print("Fin del programa...")
             break
