@@ -1,6 +1,5 @@
 import csv
 
-
 def leer_csv():
     datos = {}
     with open("Paises.csv", newline="", encoding="latin-1") as f:
@@ -11,6 +10,7 @@ def leer_csv():
             fila["Densidad"] = float(fila["Densidad"])  # Densidad
             fila["Superficie"] = int(fila["Superficie"])  # Superficie
             fila["PBI"] = int(fila["PBI"])  # PBI
+            fila["Continente"] = str( fila["Continente"])
             # guardo cada país usando su nombre como clave
             datos[fila["País"]] = fila
     return datos
