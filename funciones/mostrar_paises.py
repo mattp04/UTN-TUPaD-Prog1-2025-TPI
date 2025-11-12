@@ -1,3 +1,5 @@
+from funciones.utilidades import limpiar_consola
+
 def mostrar_paises(lista, campos=None, ancho=40):
     """
     Muestra una lista de países formateada como tabla, con columnas de ancho fijo.
@@ -7,7 +9,7 @@ def mostrar_paises(lista, campos=None, ancho=40):
         campos: lista de campos a mostrar (por defecto solo 'nombre')
         ancho: ancho en caracteres de cada columna
     """
-
+    contador = 0
     if campos is None:
         campos = ["Pais"]
 
@@ -22,6 +24,7 @@ def mostrar_paises(lista, campos=None, ancho=40):
 
     # Filas
     for elemento in lista:
+        contador = contador + 1 
         # Puede venir como (nombre, datos) o solo nombre
         # isinstance valida el tipo de un objeto
         if isinstance(elemento, tuple):
@@ -48,5 +51,9 @@ def mostrar_paises(lista, campos=None, ancho=40):
 
             # Ajuste de ancho fijo
             fila += f"{valor:<{ancho}}"
-
+        
         print(fila)
+    if contador == 0:
+        limpiar_consola()
+        print("No se encontró ningun resultado.")
+
